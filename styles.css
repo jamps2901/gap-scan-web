@@ -186,17 +186,26 @@ button:disabled{opacity:0.5; cursor:not-allowed}
   color:#e5e7eb !important;
 }
 
-/* Fix Tabulator tooltip visibility */
+/* ---- FORCE Tabulator tooltip readability (strong override) ---- */
+.tabulator .tabulator-tooltip,
 .tabulator-tooltip {
-  background: #1f2937 !important;   /* dark background */
-  color: #ffffff !important;        /* bright white text */
+  background-color: #111827 !important; /* dark */
+  color: #ffffff !important;            /* white */
   border: 1px solid #374151 !important;
   border-radius: 10px !important;
   padding: 10px 12px !important;
   font-size: 13px !important;
   line-height: 1.5 !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.45) !important;
-  max-width: 500px !important;
-  opacity: 1 !important;            /* remove transparency */
+  box-shadow: 0 10px 24px rgba(0,0,0,0.55) !important;
+  max-width: 560px !important;
+  opacity: 1 !important;
+  filter: none !important;
+  text-shadow: none !important;
+  z-index: 99999 !important;
 }
 
+/* If any parent/container is fading children, force tooltip to ignore it */
+.tabulator-tooltip * {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
