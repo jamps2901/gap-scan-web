@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gap Scan Analysis (Browser App)</title>
+
+  <!-- Tabulator -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.3.0/dist/css/tabulator.min.css">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <h1>Gap Scan Analysis (Based on Article Movement)</h1>
+        <p class="sub">
+          Purpose: When a shelf is empty, compare SAP on-hand vs movement history to judge if stock should exist somewhere (e.g., backroom).
+        </p>
+      </div>
+      <div class="badge">Client-side • No install • Works anywhere</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="grid">
+        <div class="field">
+          <label title="If SAP uses 18-digit materials, set this to 18 so MB51 and MB5B match.">Material padding</label>
+          <select id="matPad">
+            <option value="0" selected>0</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label title="Most SAP storage locations are 4 digits (e.g., 0100).">SLoc padding</label>
+          <select id="slocPad">
+            <option value="0">0</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label title="If SAP SOH and movement-based SOH differ by <= this amount, we treat it as a match.">Mismatch tolerance</label>
+          <input id="tol" type="number" step="0.1" value="0.5" />
+        </div>
+
+        <div class="field">
+          <label title="Upload MB51 export with full history. This is the movement trail (sales, receipts, counts).">Load MB51 (xlsx/xls/csv)</label>
+          <input id="mb51File" type="file" accept=".xlsx,.xls,.csv" />
+          <div class="hint" id="mb51Hint">No file loaded.</div>
+        </div>
+
+        <div class="field">
+          <label title="Upload MB5B export. This provides SAP on-hand stock (what your scanner shows).">Load MB5B (xlsx/xls)</label>
+          <input id="mb5bFile" type="file" accept=".xlsx,.xls" />
+          <div class="hint" id="mb5bHint">No file loaded.</div>
+        </div>
+
+        <div class="actions">
+          <button id="runBtn" class="primary" title="Build the decision list: What SAP says vs what movements imply.">Run Analysis</button>
+          <button id="exportBtn" class="secondary" title="Export results to Excel for inventory task list workflow." disabled>Export Excel</button>
+        </div>
+      </div>
+
+      <div class="status" id="status">Load MB51 + MB5B, then click Run Analysis.</div>
+    </section>
+
+    <section class="tabs">
+      <div class="tabbar">
+        <button class="tab active" data-tab="list">Decision List</button>
+        <button class="tab" data-tab="detail">Details</button>
+      </div>
+
+      <div class="tabpane active" id="tab-list">
+        <div class="tip">
+          How to read: <b>SAP_SOH_MB5B</b> = what SAP says now. <b>Expected_SOH_MB51</b> = what movements imply should exist.
+          <b>Expectation</b> = HIGH/MEDIUM/LOW likelihood stock “should be there” somewhere.
+        </div>
+        <div id="table"></div>
+      </div>
+
+      <div class="tabpane" id="tab-detail">
+        <div class="detail-top">
+          <label for="keySelect">Select item:</label>
+          <select id="keySelect" title="Pick a material to see plain-English explanations and recent activity (count/sale/receipt).">
+            <option value="">(Run analysis first)</option>
+          </select>
+        </div>
+        <pre class="detail" id="detailText"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6.3.0/dist/js/tabulator.min.js"></script>
+
+  <script src="./app.js"></script>
+</body>
+</html>

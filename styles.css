@@ -1,0 +1,172 @@
+:root{
+  --bg:#0b1220;
+  --panel:#0f172a;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --accent:#38bdf8;
+  --edge:#1f2937;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.header{
+  background:var(--panel);
+  border-bottom:1px solid var(--edge);
+}
+.header-inner{
+  max-width:1400px;
+  margin:0 auto;
+  padding:16px 18px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+}
+h1{margin:0; font-size:20px}
+.sub{margin:6px 0 0; color:var(--muted); font-size:13px; max-width:900px}
+.badge{
+  border:1px solid var(--edge);
+  color:var(--muted);
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.wrap{
+  max-width:1400px;
+  margin:0 auto;
+  padding:14px 18px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--edge);
+  border-radius:14px;
+  padding:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap:12px;
+  align-items:end;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.field select, .field input[type="number"], .field input[type="file"]{
+  width:100%;
+  background:#111827;
+  border:1px solid var(--edge);
+  color:var(--text);
+  border-radius:10px;
+  padding:10px;
+}
+.hint{font-size:12px; color:var(--muted); margin-top:6px}
+
+.actions{
+  grid-column: span 2;
+  display:flex;
+  gap:10px;
+}
+button{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--edge);
+  background:#111827;
+  color:var(--text);
+  cursor:pointer;
+}
+button:disabled{opacity:0.5; cursor:not-allowed}
+.primary{border-color:rgba(56,189,248,.45)}
+.secondary{border-color:var(--edge)}
+
+.status{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+  padding:10px;
+  background:#0b1020;
+  border:1px solid var(--edge);
+  border-radius:12px;
+}
+
+.tabs{
+  margin-top:14px;
+  background:var(--panel);
+  border:1px solid var(--edge);
+  border-radius:14px;
+  overflow:hidden;
+}
+.tabbar{
+  display:flex;
+  border-bottom:1px solid var(--edge);
+}
+.tab{
+  flex:0 0 auto;
+  padding:12px 14px;
+  background:transparent;
+  border:none;
+  border-right:1px solid var(--edge);
+  color:var(--muted);
+}
+.tab.active{color:var(--text); background:#0b1020}
+.tabpane{display:none; padding:12px}
+.tabpane.active{display:block}
+
+.tip{
+  color:var(--muted);
+  font-size:12.5px;
+  margin-bottom:10px;
+}
+
+.detail-top{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:10px;
+}
+.detail-top label{color:var(--muted); font-size:13px}
+.detail-top select{
+  flex:1;
+  background:#111827;
+  border:1px solid var(--edge);
+  color:var(--text);
+  border-radius:10px;
+  padding:10px;
+}
+
+.detail{
+  margin:0;
+  background:#0b1020;
+  border:1px solid var(--edge);
+  border-radius:12px;
+  padding:12px;
+  min-height:380px;
+  white-space:pre-wrap;
+}
+
+/* Tabulator tweaks */
+#table{
+  background:#0b1020;
+  border:1px solid var(--edge);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+/* Row coloring similar to your desktop tags */
+.row-high{ background:#0b2a1a !important; }
+.row-medium{ background:#2a240b !important; }
+.row-low{ background:#2a0b0b !important; }
+.row-na{ background:#0b1020 !important; }
