@@ -166,7 +166,23 @@ button:disabled{opacity:0.5; cursor:not-allowed}
 }
 
 /* Row coloring similar to your desktop tags */
-.row-high{ background:#0b2a1a !important; }
-.row-medium{ background:#2a240b !important; }
-.row-low{ background:#2a0b0b !important; }
-.row-na{ background:#0b1020 !important; }
+.row-high{
+  background:#0f3d2a !important;
+  color:#ffffff !important;
+}
+
+.row-medium{
+  background:#3f320f !important;
+  color:#ffffff !important;
+}
+
+.row-low{
+  background:#4a1010 !important;
+  color:#ffffff !important;
+}
+
+.row-na{
+  background:#0b1020 !important;
+  color:#e5e7eb !important;
+}
+
