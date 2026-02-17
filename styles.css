@@ -186,3 +186,17 @@ button:disabled{opacity:0.5; cursor:not-allowed}
   color:#e5e7eb !important;
 }
 
+/* Fix Tabulator tooltip visibility */
+.tabulator-tooltip {
+  background: #1f2937 !important;   /* dark background */
+  color: #ffffff !important;        /* bright white text */
+  border: 1px solid #374151 !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45) !important;
+  max-width: 500px !important;
+  opacity: 1 !important;            /* remove transparency */
+}
+
